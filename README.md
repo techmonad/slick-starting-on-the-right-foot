@@ -41,7 +41,7 @@ mysql> CREATE TABLE bankproduct(id int PRIMARY KEY auto_increment,name varchar(2
 $ sbt run
 ```
 
-you will see this output
+You will see this output
 
 ```
 [info] Running com.techmonad.Demo 
