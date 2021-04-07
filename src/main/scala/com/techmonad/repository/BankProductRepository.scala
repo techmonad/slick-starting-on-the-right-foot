@@ -1,6 +1,7 @@
 package com.techmonad.repository
 
 import com.techmonad.connection.{DBComponent, MySqlDBComponent}
+import slick.lifted.{ForeignKeyQuery, ProvenShape}
 
 import scala.concurrent.Future
 
@@ -50,8 +51,8 @@ private[repository] trait BankProductTable extends BankTable { this: DBComponent
     val id = column[Int]("id", O.PrimaryKey, O.AutoInc)
     val name = column[String]("name")
     val bankId = column[Int]("bank_id")
-    def bank = foreignKey("bank_product_fk", bankId, bankTableQuery)(_.id)
-    def * = (name, bankId, id.?) <> (BankProduct.tupled, BankProduct.unapply)
+    def bank: ForeignKeyQuery[BankTable, Bank] = foreignKey("bank_product_fk", bankId, bankTableQuery)(_.id)
+     def * : ProvenShape[BankProduct] = (name, bankId, id.?) <> (BankProduct.tupled, BankProduct.unapply)
 
   }
 

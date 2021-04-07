@@ -1,6 +1,7 @@
 package com.techmonad.repository
 
 import com.techmonad.connection.{DBComponent, MySqlDBComponent}
+import slick.lifted.ProvenShape
 
 import scala.concurrent.Future
 
@@ -65,7 +66,7 @@ private[repository] trait BankTable {
     val id = column[Int]("id", O.PrimaryKey, O.AutoInc)
     val name = column[String]("name")
 
-    def * = (name, id.?) <> (Bank.tupled, Bank.unapply)
+   def * : ProvenShape[Bank] = (name, id.?) <> (Bank.tupled, Bank.unapply)
 
   }
 

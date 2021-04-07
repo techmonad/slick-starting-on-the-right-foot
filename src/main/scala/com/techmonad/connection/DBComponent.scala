@@ -3,7 +3,7 @@ package com.techmonad.connection
 import slick.jdbc.JdbcProfile
 
 trait DBComponent {
-  
+
   val driver: JdbcProfile
 
   import driver.api._
@@ -11,3 +11,4 @@ trait DBComponent {
   val db: Database
 
 }
+
